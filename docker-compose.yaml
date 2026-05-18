@@ -1,0 +1,10 @@
+services:
+  docs-peagen-com:
+    build: .
+    container_name: docs-peagen-com
+    restart: unless-stopped
+    labels:
+      site.host: docs.peagen.com
+      site.kind: zdx-docs
+    ports:
+      - "127.0.0.1:0:80"

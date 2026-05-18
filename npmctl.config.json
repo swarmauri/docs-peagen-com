@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "site": "docs.peagen.com",
+  "repository": "swarmauri/docs-peagen-com",
+  "orchestrator": "npmctl",
+  "dns": {
+    "provider": "namecheap",
+    "zone": "peagen.com",
+    "records": [
+      {
+        "type": "CNAME",
+        "host": "docs",
+        "value": "docs.peagen.com",
+        "ttl": 300
+      }
+    ]
+  },
+  "deploy": {
+    "target": "self-hosted-docker",
+    "service": "docs-peagen-com",
+    "composeFile": "docker-compose.yaml"
+  },
+  "commands": {
+    "install": "npm ci",
+    "check": "npm run check",
+    "build": "npm run build",
+    "docker:build": "docker compose build docs-peagen-com",
+    "dns:plan": "node scripts/namecheap-dns.mjs --plan",
+    "deploy:dry-run": "node scripts/deploy.mjs --dry-run",
+    "deploy": "docker compose up -d --build --force-recreate --no-deps docs-peagen-com"
+  }
+}
