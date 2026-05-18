@@ -1,0 +1,9 @@
+---
+targets:
+  - name: Peagen
+    package: peagen
+    search_path: /pkgs/facade/peagen
+    include:
+      - peagen.*
+    exclude:
+      - "*.tests.*"
